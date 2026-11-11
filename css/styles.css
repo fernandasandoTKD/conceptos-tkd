@@ -1,0 +1,512 @@
+/* ==========================================================================
+   Variables / Reset
+   ========================================================================== */
+:root {
+  --color-black: #111111;
+  --color-dark: #1a1a1a;
+  --color-red: #c8102e;
+  --color-red-dark: #9c0d24;
+  --color-white: #ffffff;
+  --color-gray-100: #f5f5f5;
+  --color-gray-300: #d9d9d9;
+  --color-gray-600: #5c5c5c;
+
+  --container-width: 1200px;
+  --radius: 10px;
+  --transition: 0.25s ease;
+
+  --header-height: 64px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--color-dark);
+  background-color: var(--color-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.25;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ==========================================================================
+   Header / Navegación
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background-color: var(--color-black);
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.logo-icon {
+  font-size: 1.4rem;
+}
+
+/* Hamburger button (mobile) */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-white);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile nav menu: slide-down drawer */
+.nav-menu {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  background-color: var(--color-black);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition);
+}
+
+.nav-menu.is-open {
+  max-height: 60vh;
+}
+
+.nav-menu ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1.25rem 1.25rem;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 0.75rem 0;
+  color: var(--color-white);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus-visible {
+  color: var(--color-red);
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: var(--header-height);
+  background-color: var(--color-black);
+  background-image: url("../assets/images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.75) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.hero-content h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+}
+
+.hero-subtitle {
+  max-width: 620px;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  color: var(--color-gray-300);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  transition: transform var(--transition), background-color var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--color-red-dark);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Secciones generales
+   ========================================================================== */
+.section {
+  padding: 4rem 0;
+}
+
+.section-alt {
+  background-color: var(--color-gray-100);
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  text-align: center;
+  color: var(--color-black);
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 0.75rem auto 0;
+  background-color: var(--color-red);
+  border-radius: 2px;
+}
+
+.section-intro {
+  max-width: 720px;
+  margin: 1rem auto 2.5rem;
+  text-align: center;
+  color: var(--color-gray-600);
+}
+
+.subsection-title {
+  font-size: 1.25rem;
+  color: var(--color-red-dark);
+  margin: 2rem 0 1.25rem;
+}
+
+/* ==========================================================================
+   Grids fluidos (Flexbox + CSS Grid)
+   ========================================================================== */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-tenets {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.grid-cards {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* ==========================================================================
+   Tarjetas
+   ========================================================================== */
+.card {
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.tenet-card {
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  align-items: center;
+}
+
+.tenet-icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.tenet-korean {
+  font-size: 0.85rem;
+  color: var(--color-red);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.media-card .tech-img,
+.media-card .img-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: var(--color-gray-300);
+}
+
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-gray-600);
+  font-size: 0.85rem;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-body h3,
+.card-body h4 {
+  margin-bottom: 0.5rem;
+  color: var(--color-black);
+}
+
+.card-body p {
+  color: var(--color-gray-600);
+  font-size: 0.95rem;
+}
+
+.video-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background-color: #ff0000;
+  color: var(--color-white);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.video-link:hover,
+.video-link:focus-visible {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Video
+   ========================================================================== */
+.video-wrapper {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.video-wrapper h3 {
+  margin-bottom: 1rem;
+  color: var(--color-black);
+}
+
+.video-wrapper video {
+  width: 100%;
+  max-width: 800px;
+  border-radius: var(--radius);
+  background-color: var(--color-black);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background-color: var(--color-black);
+  color: var(--color-gray-300);
+  padding: 2.5rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: var(--color-red);
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: var(--color-gray-600);
+}
+
+/* ==========================================================================
+   Breakpoint: Tablet (>= 768px)
+   ========================================================================== */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   Breakpoint: Escritorio (>= 1024px)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-menu {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .nav-menu ul {
+    flex-direction: row;
+    padding: 0;
+    gap: 1.75rem;
+  }
+
+  .nav-menu a {
+    padding: 0;
+    border-bottom: none;
+    position: relative;
+  }
+
+  .nav-menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-red);
+    transition: width var(--transition);
+  }
+
+  .nav-menu a:hover::after,
+  .nav-menu a:focus-visible::after {
+    width: 100%;
+  }
+
+  .section {
+    padding: 6rem 0;
+  }
+}
+
+/* ==========================================================================
+   Breakpoint: Pantallas de alta resolución (>= 1440px)
+   ========================================================================== */
+@media (min-width: 1440px) {
+  :root {
+    --container-width: 1320px;
+  }
+}
